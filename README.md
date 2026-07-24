@@ -57,10 +57,10 @@ Contains pictograms, themes, keywords, and scientific concept definitions.
 
 Clone the repository:
 
-git clone https://github.com/yourname/SilentScienceApp.git
-cd SilentScienceApp
-npm install
-npm start
+- git clone https://github.com/yourname/SilentScienceApp.git
+- cd SilentScienceApp
+- npm install
+- npm start
 
 ## License
 
