@@ -1,0 +1,14 @@
+{
+  "name": "silentscienceapp",
+  "version": "0.1.0",
+  "description": "Scientific AAC web application for non-verbal children. Builds questions from pictograms and generates AAC-friendly scientific explanations.",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node src/api/server.js",
+    "dev": "node src/api/server.js",
+    "build": "echo \"Build step not yet implemented\""
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}
