@@ -4,6 +4,19 @@ const buttons = [...document.querySelectorAll(".theme")];
 const wait = (ms) =>
   new Promise(resolve => setTimeout(resolve, ms));
 
+// Tentative de passage en plein écran
+async function enterFullscreen() {
+  if (document.fullscreenElement) return;
+
+  try {
+    await document.documentElement.requestFullscreen();
+  } catch (error) {
+    console.log(
+      "Le navigateur nécessite une interaction pour le plein écran."
+    );
+  }
+}
+
 // Lecture d'une phrase avec la voix française
 function speak(text) {
   return new Promise(resolve => {
@@ -36,12 +49,9 @@ async function introduceTheme(theme) {
   button.classList.add("highlight");
 
   await speak(button.querySelector("span").textContent);
-
-  // Laisser le temps de regarder le pictogramme
   await wait(900);
 
   button.classList.remove("highlight");
-
   await wait(700);
 }
 
@@ -59,7 +69,10 @@ async function startPresentation() {
 
 // Réaction au toucher d'un pictogramme
 buttons.forEach(button => {
-  button.addEventListener("click", () => {
+  button.addEventListener("click", async () => {
+    // Nouvelle tentative de plein écran après interaction
+    await enterFullscreen();
+
     if ("speechSynthesis" in window) {
       speechSynthesis.cancel();
     }
@@ -76,9 +89,6 @@ buttons.forEach(button => {
   });
 });
 
-// Lancer la présentation au chargement
-window.addEventListener("load", startPresentation);
-
 // Enregistrement du service worker
 if ("serviceWorker" in navigator) {
   navigator.serviceWorker.register("./service-worker.js")
@@ -86,3 +96,10 @@ if ("serviceWorker" in navigator) {
       console.error("Erreur service worker :", error);
     });
 }
+
+// Tentative au chargement
+window.addEventListener("load", () => {
+  enterFullscreen();
+  startPresentation();
+});
+
