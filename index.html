@@ -1,21 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#ffffff">
   <title>SilentScienceApp</title>
+
   <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="style.css">
+
+  <script src="app.js" defer></script>
 </head>
 
 <body>
-  <div id="app">Loading SilentScienceApp...</div>
+  <main id="app">
+    <h1>Que veux-tu comprendre ?</h1>
 
-  <!-- Enregistrement du service worker -->
-  <script>
-    if ("serviceWorker" in navigator) {
-      navigator.serviceWorker.register("/service-worker.js");
-    }
-  </script>
+    <div class="themes">
+      <button class="theme" type="button" data-theme="milky-way">
+        <img
+          src="https://raw.githubusercontent.com/LeMonde2Manon/SilentScienceProject/main/pictograms/astronomy/milky%20way.png"
+          alt="Voie Lactée">
+        <span>Voie Lactée</span>
+      </button>
+
+      <button class="theme" type="button" data-theme="solar-system">
+        <img
+          src="https://raw.githubusercontent.com/LeMonde2Manon/SilentScienceProject/main/pictograms/astronomy/solar%20system.png"
+          alt="Système solaire">
+        <span>Système solaire</span>
+      </button>
+    </div>
+  </main>
 </body>
 </html>
 
